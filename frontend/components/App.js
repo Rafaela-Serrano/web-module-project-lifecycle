@@ -8,6 +8,8 @@ export default class App extends React.Component {
     super();
     this.state = {
       todos: [],
+      //render a error from catch 
+      error: "",
     }
   }
 
@@ -18,7 +20,8 @@ export default class App extends React.Component {
       this.setState ({ ...this.state, todos: res.data.data });
     })
     .catch ( err => {
-      debugger
+      // debugger
+      this.setState ({ ...this.state, error:err.response.data.message });
     })
   }
 
@@ -33,12 +36,12 @@ export default class App extends React.Component {
 
       <div>
 
-        <div id="error" > Error: No error here </div>
+        <div id="error" > { this.state.error } </div>
 
         <div id="todos" >
           <h2>Todos:</h2>
           {
-            
+
           this.state.todos.map ( (todo) => (<div key={todo.id}> {todo.name} </div>) )
           
           }
