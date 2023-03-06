@@ -52,6 +52,18 @@ export default class App extends React.Component {
     .catch ( this.setAxiosError )
   }
 
+  toggleCompleted = id => () => {
+    axios.patch(`${URL}/${id}`)
+    .then( res => {
+      this.setState ({ ...this.state, todos: this.state.todos.map( td => {
+        if (td.id !== id ) return td 
+        return res.data.data
+      })})
+    })
+    .catch( this.setAxiosError )
+  }
+
+
   componentDidMount () {
     this.fetchTodos()
   }
@@ -67,9 +79,7 @@ export default class App extends React.Component {
         <div id="todos" >
           <h2>Todos:</h2>
           {
-
-          this.state.todos.map ( (todo) => (<div key={todo.id}> {todo.name} </div>) )
-          
+          this.state.todos.map ( (todo) => (<div key={todo.id} onClick = {this.toggleCompleted(todo.id)} > {todo.name} {todo.completed? '✔️' :''}</div>) ) 
           }
           
         </div>
