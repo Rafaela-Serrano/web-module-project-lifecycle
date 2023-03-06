@@ -37,7 +37,7 @@ export default class App extends React.Component {
   postTodos = () => {
     axios.post( URL, {name:this.state.todoNameInput} )
     .then(res => {
-      this.fetchTodos()
+      this.setState({ ...this.setState, todos: this.state.todos.concat(res.data.data)})
       this.resetForm()
     })
     .catch( this.setAxiosError )
