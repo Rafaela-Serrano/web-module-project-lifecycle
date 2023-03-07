@@ -6,19 +6,29 @@ export default class Form extends React.Component {
     return (
       <div>
 
-        <form id="todoForm" onSubmit={this.props.onSubmitTodoForm}>
-          <input 
-          value={this.props.todoNameInput} 
-          onChange={this.props.onChangetodoNameInput} 
-          type="text" 
-          placeholder="Type todo"/>
+        <form 
+          id="todoForm" 
+          onSubmit={this.props.onSubmitTodoForm}>
 
-          <input type="submit"/>  
+
+          <input 
+            value={this.props.todoNameInput} 
+            onChange={this.props.onChangetodoNameInput} 
+            type="text" 
+            placeholder="Type todo"/>
+
+          <input 
+            type="submit"/>  
+
         </form>
 
-        <button onClick = {this.props.toggleclearcompleted}>
-          {this.props.completed ? "Hide" : "Show" } complete 
-          </button>
+        <button 
+          onClick = {this.props.toggleclearcompleted}>
+
+          {this.props.completed ? "Hide" : "Show" } Complete 
+
+        </button>
+        
       </div>
     )
   }

@@ -55,7 +55,7 @@ export default class App extends React.Component {
     .catch ( this.setAxiosError )
   }
 
-  toggleCompleted = id => () => {
+  toggleCompleted = id => evt => {
     axios.patch(`${URL}/${id}`)
     .then( res => {
       this.setState ({ ...this.state, todos: this.state.todos.map( td => {
